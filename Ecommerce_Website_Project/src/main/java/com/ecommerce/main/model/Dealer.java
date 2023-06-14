@@ -10,20 +10,20 @@ import javax.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 @Entity
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class Employee {
+@NoArgsConstructor
+public class Dealer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer employeeId;
-	private String employeeName;
-	private Long employeeMobileNumber;
-	private String employeeEmail;
+	private Integer dealerId;
+	private String dealerName;
+	private Long dealerMobileNumber;
+	private String dealerEmail;
 	@OneToOne(cascade = CascadeType.ALL)
-	private Address employeeAddress;
-	@OneToOne(cascade = CascadeType.ALL)
-	private User employeeUserDetails;
+	private Address dealerAddress;
+	
+	
+
 }

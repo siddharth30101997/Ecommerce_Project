@@ -13,17 +13,16 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class Employee {
+@NoArgsConstructor
+public class Products {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer employeeId;
-	private String employeeName;
-	private Long employeeMobileNumber;
-	private String employeeEmail;
+	private Integer productId;
+	private String productName;
+	private String productCategory;
+	private Double productPrice;
+	private Integer productStockQuantity;
 	@OneToOne(cascade = CascadeType.ALL)
-	private Address employeeAddress;
-	@OneToOne(cascade = CascadeType.ALL)
-	private User employeeUserDetails;
+	private ProductDetails productDetails;
 }
