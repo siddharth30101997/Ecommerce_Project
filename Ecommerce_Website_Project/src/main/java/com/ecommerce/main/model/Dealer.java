@@ -23,6 +23,8 @@ public class Dealer {
 	private String dealerEmail;
 	@OneToOne(cascade = CascadeType.ALL)
 	private Address dealerAddress;
+	@OneToOne(cascade = CascadeType.ALL)
+	private BankDetails dealerBankDetails;
 	
 	
 

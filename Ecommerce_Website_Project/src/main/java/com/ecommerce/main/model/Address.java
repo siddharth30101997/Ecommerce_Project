@@ -17,10 +17,11 @@ public class Address {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer addressId;
-	private Integer flatNumber;
+	private Integer houseNumber;
 	private String street;
 	private String area;
 	private String city;
+	private String landmark;
 	private Long pincode;
 	private String state;
 

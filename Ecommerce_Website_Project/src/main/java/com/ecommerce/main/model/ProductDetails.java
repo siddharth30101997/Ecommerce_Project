@@ -21,6 +21,7 @@ public class ProductDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer productDetailsId;
+	private String productName;
 	private String manufacturerName;
 	private String modelNumber;
 	@OneToMany(cascade = CascadeType.ALL)
