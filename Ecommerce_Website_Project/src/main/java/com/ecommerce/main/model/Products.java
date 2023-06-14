@@ -25,7 +25,7 @@ public class Products {
 	private Integer productId;
 	private String productCategory;
 	private Double productPrice;
-	private Integer productStockQuantity;
+	private Integer productAvailableCount;
 	private Integer productRating;
 	
 	@OneToOne(cascade = CascadeType.ALL)

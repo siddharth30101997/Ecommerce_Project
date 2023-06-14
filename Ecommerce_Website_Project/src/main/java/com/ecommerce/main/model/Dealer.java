@@ -21,11 +21,10 @@ public class Dealer {
 	private String dealerName;
 	private Long dealerMobileNumber;
 	private String dealerEmail;
+	
 	@OneToOne(cascade = CascadeType.ALL)
 	private Address dealerAddress;
+	
 	@OneToOne(cascade = CascadeType.ALL)
 	private BankDetails dealerBankDetails;
-	
-	
-
 }
