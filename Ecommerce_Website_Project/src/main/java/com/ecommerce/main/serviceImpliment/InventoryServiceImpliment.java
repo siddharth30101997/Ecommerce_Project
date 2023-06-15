@@ -9,7 +9,7 @@ import com.ecommerce.main.model.Products;
 import com.ecommerce.main.repository.ProductRepository;
 import com.ecommerce.main.service.InventoryService;
 @Service
-public class InventoryServiceImpliment implements InventoryService {
+public  class InventoryServiceImpliment implements InventoryService {
 	@Autowired
 	ProductRepository productRepository;
 	@Override
@@ -28,9 +28,15 @@ public class InventoryServiceImpliment implements InventoryService {
 		return productList;
 	}
 	@Override
-	public Products getproductByName(String productName) {
-		  // TODO Auto-generated method stub
-		return null;
+	public List<Products> getproductByName(String productName) {
+		List<Products> productList = productRepository.findByProductName(productName);
+		return productList;
 	}
+	@Override
+	public List<Products>getproductByPrice(Double productPrice) {
+		List<Products> productList = productRepository.findByProductPrice(productPrice);
+		return productList;
+	}
+
 
 }

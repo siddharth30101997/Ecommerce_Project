@@ -34,6 +34,7 @@ public class InventoryController {
 		List<Products> productList=inventoryService.getAllProducts();
 		return new ResponseEntity<List<Products>>(productList,HttpStatus.OK);
 	}
+	
 //	@GetMapping(value = "/getproductByName/{productName}")
 //	public ResponseEntity<Products> getproductByName(@PathVariable String productName){
 //		Products getproductByCategory = inventoryService.getproductByCategory(productName);

@@ -1,5 +1,9 @@
 package com.ecommerce.main.service;
 
-public interface CustomerService {
+import com.ecommerce.main.model.Customer;
 
+
+public interface CustomerService {
+	
+	public void savecustomer(Customer customer);
 }

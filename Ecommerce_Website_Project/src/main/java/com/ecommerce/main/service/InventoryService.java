@@ -12,6 +12,7 @@ public interface InventoryService {
 
 	public List<Products> getproductByCategory(String productCatagory);
 
-	public Products getproductByName(String productName);
+	public List<Products>getproductByName(String productName);
 
+	public List<Products> getproductByPrice(Double productPrice);
 }
