@@ -20,5 +20,4 @@ public class BankDetails {
 	private String branchName;
 	private String ifscNumber;
 	private Long cardNumber;
-	
 }
