@@ -22,8 +22,10 @@ public class Employee {
 	private String employeeName;
 	private Long employeeMobileNumber;
 	private String employeeEmail;
+	
 	@OneToOne(cascade = CascadeType.ALL)
 	private Address employeeAddress;
+	
 	@OneToOne(cascade = CascadeType.ALL)
 	private UserDetails employeeUserDetails;
 }
