@@ -52,7 +52,7 @@ public class CustomerController {
 	}
 	
 	@PostMapping(value ="/createCustomer")
-	public ResponseEntity<String> createProduct(@RequestBody Customer customer){
+	public ResponseEntity<String> savecustomer(@RequestBody Customer customer){
 		
 		customerService.savecustomer(customer);
 		return new ResponseEntity<String>("Customer Created", HttpStatus.CREATED);
