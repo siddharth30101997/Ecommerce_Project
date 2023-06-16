@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ecommerce.main.model.Customer;
 import com.ecommerce.main.model.Products;
+import com.ecommerce.main.model.UserDetails;
 import com.ecommerce.main.service.CustomerService;
 import com.ecommerce.main.service.InventoryService;
 
@@ -25,6 +26,17 @@ public class CustomerController {
 	
 	@Autowired
 	private CustomerService customerService;
+	
+	@PostMapping(value ="/createCustomer")
+	public ResponseEntity<String> savecustomer(@RequestBody Customer customer){
+		UserDetails user=new UserDetails();
+		user.setUserType("customer");
+		user.setUserName(customer.getCustomerUserDetails().getUserName());
+		user.setPassword(customer.getCustomerUserDetails().getPassword());
+		customer.setCustomerUserDetails(user);
+		customerService.savecustomer(customer);
+		return new ResponseEntity<String>("Customer Created", HttpStatus.CREATED);
+	}
 	
 	@GetMapping(value = "/viewProductByCategory/{productCategory}")
 	public ResponseEntity<List<Products>> viewProductByCategory(@PathVariable String productCategory){
@@ -51,11 +63,6 @@ public class CustomerController {
 //		return new ResponseEntity<List<Products>>(productList,HttpStatus.OK);
 //	}
 //	
-	@PostMapping(value ="/createCustomer")
-	public ResponseEntity<String> savecustomer(@RequestBody Customer customer){
-		
-		customerService.savecustomer(customer);
-		return new ResponseEntity<String>("Customer Created", HttpStatus.CREATED);
-	}
+	
 
 }
