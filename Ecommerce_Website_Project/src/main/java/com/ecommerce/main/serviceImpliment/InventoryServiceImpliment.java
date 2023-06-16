@@ -27,16 +27,16 @@ public  class InventoryServiceImpliment implements InventoryService {
 		List<Products> productList = productRepository.findByProductCategory(productCatagory);
 		return productList;
 	}
-	@Override
-	public List<Products> getproductByName(String productName) {
-		List<Products> productList = productRepository.findByProductName(productName);
-		return productList;
-	}
-	@Override
-	public List<Products>getproductByPrice(Double productPrice) {
-		List<Products> productList = productRepository.findByProductPrice(productPrice);
-		return productList;
-	}
+//	@Override
+//	public List<Products> getproductByName(String productName) {
+//		List<Products> productList = productRepository.findByProductName(productName);
+//		return productList;
+//	}
+//	@Override
+//	public List<Products>getproductByPrice(Double productPrice) {
+//		List<Products> productList = productRepository.findByProductPrice(productPrice);
+//		return productList;
+//	}
 
 
 }

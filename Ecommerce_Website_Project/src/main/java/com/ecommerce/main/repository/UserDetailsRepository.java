@@ -9,5 +9,8 @@ import com.ecommerce.main.model.UserDetails;
 @Repository
 public interface UserDetailsRepository extends JpaRepository<UserDetails, Integer>{
 	public UserDetails findByUserType(String userType);
+	
+	public UserDetails findByUserNameAndPassword(String userName, String password);
+
 
 }

@@ -39,18 +39,18 @@ public class CustomerController {
 		return new ResponseEntity<List<Products>>(productList,HttpStatus.OK);
 	}
 
-	@GetMapping(value = "/viewProductsByPrice/{productPrice}")	
-	public ResponseEntity<List<Products>>viewProductsByPrice(@PathVariable Double productPrice){
-		List<Products> productList = inventoryService.getproductByPrice(productPrice);
-		return new ResponseEntity<List<Products>>(productList,HttpStatus.OK);
-	}
+//	@GetMapping(value = "/viewProductsByPrice/{productPrice}")	
+//	public ResponseEntity<List<Products>>viewProductsByPrice(@PathVariable Double productPrice){
+//		List<Products> productList = inventoryService.getproductByPrice(productPrice);
+//		return new ResponseEntity<List<Products>>(productList,HttpStatus.OK);
+//	}
 
-	@GetMapping(value = "/viewProductsByPrice/{productName}")	
-	public ResponseEntity<List<Products>>viewProductsByName(@PathVariable String productName){
-		List<Products> productList = inventoryService.getproductByName(productName);
-		return new ResponseEntity<List<Products>>(productList,HttpStatus.OK);
-	}
-	
+//	@GetMapping(value = "/viewProductsByPrice/{productName}")	
+//	public ResponseEntity<List<Products>>viewProductsByName(@PathVariable String productName){
+//		List<Products> productList = inventoryService.getproductByName(productName);
+//		return new ResponseEntity<List<Products>>(productList,HttpStatus.OK);
+//	}
+//	
 	@PostMapping(value ="/createCustomer")
 	public ResponseEntity<String> savecustomer(@RequestBody Customer customer){
 		
