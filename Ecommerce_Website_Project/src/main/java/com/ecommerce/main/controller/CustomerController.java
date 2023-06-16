@@ -31,6 +31,7 @@ public class CustomerController {
 	public ResponseEntity<String> savecustomer(@RequestBody Customer customer){
 		UserDetails user=new UserDetails();
 		user.setUserType("customer");
+	
 		user.setUserName(customer.getCustomerUserDetails().getUserName());
 		user.setPassword(customer.getCustomerUserDetails().getPassword());
 		customer.setCustomerUserDetails(user);
