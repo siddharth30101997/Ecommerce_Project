@@ -1,5 +1,7 @@
 package com.ecommerce.main.controller;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ecommerce.main.model.Customer;
+import com.ecommerce.main.model.ProductDetails;
 import com.ecommerce.main.model.Products;
 import com.ecommerce.main.model.UserDetails;
 import com.ecommerce.main.service.CustomerService;
@@ -52,18 +55,26 @@ public class CustomerController {
 		return new ResponseEntity<List<Products>>(productList,HttpStatus.OK);
 	}
 
-//	@GetMapping(value = "/viewProductsByPrice/{productPrice}")	
-//	public ResponseEntity<List<Products>>viewProductsByPrice(@PathVariable Double productPrice){
-//		List<Products> productList = inventoryService.getproductByPrice(productPrice);
-//		return new ResponseEntity<List<Products>>(productList,HttpStatus.OK);
-//	}
+	@GetMapping(value = "/viewProductsByPrice/{productPrice}")	
+	public ResponseEntity<List<Products>>viewProductsByPrice(@PathVariable Double productPrice){
+		List<Products> productList = inventoryService.getproductByPrice(productPrice);
+		return new ResponseEntity<List<Products>>(productList,HttpStatus.OK);
+	}
 
-//	@GetMapping(value = "/viewProductsByPrice/{productName}")	
-//	public ResponseEntity<List<Products>>viewProductsByName(@PathVariable String productName){
-//		List<Products> productList = inventoryService.getproductByName(productName);
-//		return new ResponseEntity<List<Products>>(productList,HttpStatus.OK);
-//	}
-//	
+	@GetMapping(value = "/viewProductsByName/{productName}")
+	public ResponseEntity<List<Products>> viewProductsByName(@PathVariable String productName) {
+
+		List<Products> productList = inventoryService.getAllProducts();
+		List<Products> productListByName = new ArrayList<>();
+		for (Products products : productList) {
+			if (products.getProductDetails().getProductName().equals(productName)) {
+				productListByName.add(products);
+			}
+
+		}
+
+		return new ResponseEntity<List<Products>>(productListByName, HttpStatus.OK);
+	}
 	
 
 }

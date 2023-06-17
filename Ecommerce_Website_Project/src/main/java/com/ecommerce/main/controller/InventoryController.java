@@ -24,7 +24,7 @@ public class InventoryController {
 	@Autowired
 	InventoryService inventoryService;
 
-	@PostMapping(value = "/createEmployee")
+	@PostMapping(value = "/createProduct")
 	public ResponseEntity<String> createProduct(@RequestBody Products product) {
 
 		inventoryService.saveproduct(product);
