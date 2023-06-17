@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.ecommerce.main.exceptionHandller.EmployeeNotFoundException;
 import com.ecommerce.main.model.Dealer;
 import com.ecommerce.main.model.Employee;
 import com.ecommerce.main.model.Products;
@@ -47,8 +49,14 @@ public class AdminServiceImpliment implements AdminService{
 	}
 	@Override
 	public List<Employee> findByEmployeeName(String employeeName) {
-		List<Employee> findByEmployeeName =	employeeRepository.findByEmployeeName(employeeName);
-		return findByEmployeeName;
+		List<Employee> employeeList = employeeRepository.findByEmployeeName(employeeName);
+		if(employeeList.isEmpty()) {
+			throw new EmployeeNotFoundException("Invalid Entry");
+		}
+		else {
+			return employeeList;
+		}
+		
 	}
 
 }
