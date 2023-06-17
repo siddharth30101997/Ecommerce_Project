@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,7 +18,7 @@ import com.ecommerce.main.model.Products;
 import com.ecommerce.main.model.UserDetails;
 import com.ecommerce.main.service.CustomerService;
 import com.ecommerce.main.service.InventoryService;
-
+@CrossOrigin("*")
 @RestController
 @RequestMapping("customer")
 public class CustomerController {
@@ -29,12 +30,11 @@ public class CustomerController {
 	
 	@PostMapping(value ="/createCustomer")
 	public ResponseEntity<String> savecustomer(@RequestBody Customer customer){
-		UserDetails user=new UserDetails();
-		user.setUserType("customer");
-	
-		user.setUserName(customer.getCustomerUserDetails().getUserName());
-		user.setPassword(customer.getCustomerUserDetails().getPassword());
-		customer.setCustomerUserDetails(user);
+//		UserDetails user=new UserDetails();
+//		user.setUserType("customer");
+//		user.setUserName(customer.getCustomerUserDetails().getUserName());
+//		user.setPassword(customer.getCustomerUserDetails().getPassword());
+//		customer.setCustomerUserDetails(user);
 		customerService.savecustomer(customer);
 		return new ResponseEntity<String>("Customer Created", HttpStatus.CREATED);
 	}
