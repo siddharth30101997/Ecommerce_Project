@@ -26,6 +26,7 @@ public class AdminController {
 	@Autowired 
 	private AdminService adminService;
 	
+	
 	@PostMapping(value = "/createEmployee")
 	public ResponseEntity<String> cretaeEmployee(@RequestBody Employee employee){
 	
@@ -51,8 +52,14 @@ public class AdminController {
 		}
 		return new ResponseEntity<List<Employee>>(userTypeList,HttpStatus.OK);
 	}
+	@GetMapping(value = "getByEmployeeName/{employeeName}")
+	public ResponseEntity<List<Employee>> getByEmployeeName(@PathVariable String employeeName){
+		List<Employee> userTypeList= adminService.findByEmployeeName(employeeName);
+		
+		return new ResponseEntity<List<Employee>>(userTypeList,HttpStatus.OK);
+	}
 	
-	@PostMapping(value = "/adddealer")
+	@PostMapping(value = "/adddealer") 
 	public ResponseEntity<String>addDealer(@RequestBody Dealer dealer){
 		adminService.saveDealer(dealer);
 		return new ResponseEntity<String>("Dealer Added",HttpStatus.CREATED);

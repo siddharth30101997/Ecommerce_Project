@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.ecommerce.main.model.Dealer;
 import com.ecommerce.main.model.Employee;
+import com.ecommerce.main.model.Products;
 import com.ecommerce.main.model.UserDetails;
 import com.ecommerce.main.repository.DealerRepository;
 import com.ecommerce.main.repository.EmployeeRepository;
@@ -43,6 +44,11 @@ public class AdminServiceImpliment implements AdminService{
 		UserDetails findByUserType = userDetailsRepository.findByUserType(userType);
 		 
 		return findByUserType;
+	}
+	@Override
+	public List<Employee> findByEmployeeName(String employeeName) {
+		List<Employee> findByEmployeeName =	employeeRepository.findByEmployeeName(employeeName);
+		return findByEmployeeName;
 	}
 
 }
