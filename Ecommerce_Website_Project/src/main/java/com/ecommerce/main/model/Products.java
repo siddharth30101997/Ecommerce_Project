@@ -28,6 +28,7 @@ public class Products {
 	private Integer productAvailableCount;
 	private Integer productRating;
 	private String productStatus;
+	private byte[] productPhoto;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	private ProductDetails productDetails;

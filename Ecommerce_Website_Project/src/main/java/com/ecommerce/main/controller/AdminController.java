@@ -52,7 +52,7 @@ public class AdminController {
 		return new ResponseEntity<List<Employee>>(userTypeList,HttpStatus.OK);
 	}
 	
-	@PostMapping(value = "/adddealer")
+	@PostMapping(value = "/adddealer") 
 	public ResponseEntity<String>addDealer(@RequestBody Dealer dealer){
 		adminService.saveDealer(dealer);
 		return new ResponseEntity<String>("Dealer Added",HttpStatus.CREATED);
