@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ecommerce.main.exceptionHandller.ProductNotFoundException;
+import com.ecommerce.main.model.ProductFeatures;
 import com.ecommerce.main.model.Products;
 import com.ecommerce.main.service.InventoryService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -96,7 +97,14 @@ public class InventoryController {
 			ObjectMapper objectmapper=new ObjectMapper();  
 			
 			Products productData = objectmapper.readValue(product, Products.class);
-			
+//			List<ProductFeatures> productfeatures = productData.getProductDetails().getProductfeatures();
+//			for (ProductFeatures feature : productfeatures) {
+//				Integer featureId = feature.getProductFeatureId();
+//			ProductFeatures pf	=inventoryService.getProductFeatures(featureId);
+//			if(pf!=null) {
+//				
+//			}
+//			}
 			System.out.println(productData.getProductCategory());
 			
 			productData.setProductPhoto(multipartfile.getBytes());

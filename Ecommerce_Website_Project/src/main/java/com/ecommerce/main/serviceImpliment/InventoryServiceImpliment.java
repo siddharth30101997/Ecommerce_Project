@@ -7,13 +7,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ecommerce.main.exceptionHandller.ProductNotFoundException;
+import com.ecommerce.main.model.ProductFeatures;
 import com.ecommerce.main.model.Products;
+import com.ecommerce.main.repository.ProductFeaturesrepository;
 import com.ecommerce.main.repository.ProductRepository;
 import com.ecommerce.main.service.InventoryService;
 @Service
 public  class InventoryServiceImpliment implements InventoryService {
 	@Autowired
 	ProductRepository productRepository;
+	@Autowired
+	ProductFeaturesrepository featureRepository;
 	@Override
 	public void saveproduct(Products product) {
 		
@@ -55,6 +59,11 @@ public  class InventoryServiceImpliment implements InventoryService {
 	public Optional<Products> getProductByIdOptional(Integer productId) {
 		Optional<Products> optional = productRepository.findById(productId);
 		return optional;
+	}
+	@Override
+	public ProductFeatures getProductFeatures(Integer featureId) {
+		Optional<ProductFeatures> findById = featureRepository.findById(featureId);
+		return findById.get();
 	}
 
 

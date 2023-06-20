@@ -24,6 +24,6 @@ public class ProductDetails {
 	private String productName;
 	private String manufacturerName;
 	private String modelNumber;
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.MERGE)
 	private List<ProductFeatures> productfeatures=new ArrayList<>();
 }

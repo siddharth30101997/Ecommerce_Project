@@ -3,6 +3,7 @@ package com.ecommerce.main.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.ecommerce.main.model.ProductFeatures;
 import com.ecommerce.main.model.Products;
 
 public interface InventoryService {
@@ -19,6 +20,8 @@ public interface InventoryService {
 	public Products getProductById(Integer productId);
 
 	public Optional<Products> getProductByIdOptional(Integer productId);
+
+	public ProductFeatures getProductFeatures(Integer featureId);
 
 	
 
