@@ -51,6 +51,11 @@ public  class InventoryServiceImpliment implements InventoryService {
 		Optional<Products> product= productRepository.findById(productId);
 		return product.get();
 	}
+	@Override
+	public Optional<Products> getProductByIdOptional(Integer productId) {
+		Optional<Products> optional = productRepository.findById(productId);
+		return optional;
+	}
 
 
 }
