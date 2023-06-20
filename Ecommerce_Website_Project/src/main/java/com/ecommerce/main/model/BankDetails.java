@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class BankDetails {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+
 	private Long bankAccountNumber;
 	private String bankName;
 	private String branchName;

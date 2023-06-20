@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ecommerce.main.model.Dealer;
 import com.ecommerce.main.model.Employee;
+import com.ecommerce.main.repository.DealerRepository;
 import com.ecommerce.main.service.AdminService;
 @CrossOrigin("*")
 @RestController
@@ -25,7 +26,6 @@ public class AdminController {
 	
 	@Autowired 
 	private AdminService adminService;
-	
 	
 	@PostMapping(value = "/createEmployee")
 	public ResponseEntity<String> cretaeEmployee(@RequestBody Employee employee){
@@ -60,8 +60,10 @@ public class AdminController {
 	}
 	
 	@PostMapping(value = "/adddealer") 
-	public ResponseEntity<String>addDealer(@RequestBody Dealer dealer){
+	public ResponseEntity<String> addDealer(@RequestBody Dealer dealer){
+		dealer.getDealerName();
 		adminService.saveDealer(dealer);
+
 		return new ResponseEntity<String>("Dealer Added",HttpStatus.CREATED);
 	}
 	
@@ -70,6 +72,13 @@ public class AdminController {
 		List<Dealer> getAllDealer = adminService.getAllDealer();
 		
 		return new ResponseEntity<List<Dealer>>(getAllDealer,HttpStatus.OK);
+	}
+	
+	@GetMapping(value = "/getDealerById/{dealerId}")
+	public ResponseEntity<Dealer> getDealerById(@PathVariable Integer dealerId){
+		Dealer dealer = adminService.getDealerById(dealerId);
+		
+		return new ResponseEntity<Dealer>(dealer,HttpStatus.OK);
 	}
 	
 

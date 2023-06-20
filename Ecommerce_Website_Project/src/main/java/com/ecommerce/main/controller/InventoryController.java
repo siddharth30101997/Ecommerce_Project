@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,7 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.ecommerce.main.model.Products;
 import com.ecommerce.main.service.InventoryService;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
+@CrossOrigin("*")
 @RestController
 @RequestMapping("inventory")
 public class InventoryController {
@@ -37,7 +38,7 @@ public class InventoryController {
 	public ResponseEntity<String> createProduct(@RequestParam("product") String product,
 			@RequestParam("productPhoto") MultipartFile multipartfile) throws IOException {
 		
-		ObjectMapper objectmapper=new ObjectMapper();
+		ObjectMapper objectmapper=new ObjectMapper();  
 		
 		Products productData = objectmapper.readValue(product, Products.class);
 		
@@ -54,6 +55,13 @@ public class InventoryController {
 		List<Products> productList = inventoryService.getAllProducts();
 		return new ResponseEntity<List<Products>>(productList, HttpStatus.OK);
 	}
+	
+	@GetMapping(value = "/getProductById/{productId}")
+	public ResponseEntity<Products> getProductById(@PathVariable Integer productId) {
+		Products product = inventoryService.getProductById(productId);
+		return new ResponseEntity<Products>(product, HttpStatus.OK);
+	}
+	
 
 	@GetMapping(value = "/getproductByName/{productName}")
 	public ResponseEntity<List<Products>> getproductByName(@PathVariable String productName) {

@@ -20,4 +20,6 @@ public interface AdminService {
 	public UserDetails getByUserType(String userType);
 	
 	public List<Employee> findByEmployeeName(String employeeName);
+
+	public Dealer getDealerById(Integer dealerId);
 }

@@ -1,6 +1,7 @@
 package com.ecommerce.main.serviceImpliment;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,7 +9,6 @@ import org.springframework.stereotype.Service;
 import com.ecommerce.main.exceptionHandller.EmployeeNotFoundException;
 import com.ecommerce.main.model.Dealer;
 import com.ecommerce.main.model.Employee;
-import com.ecommerce.main.model.Products;
 import com.ecommerce.main.model.UserDetails;
 import com.ecommerce.main.repository.DealerRepository;
 import com.ecommerce.main.repository.EmployeeRepository;
@@ -18,7 +18,9 @@ import com.ecommerce.main.service.AdminService;
 public class AdminServiceImpliment implements AdminService{
 	@Autowired
 	private EmployeeRepository employeeRepository;
+	@Autowired
 	private DealerRepository dealerRepository;
+	@Autowired
 	private UserDetailsRepository userDetailsRepository;
 	@Override
 	public void saveEmployee(Employee employee) {
@@ -30,6 +32,7 @@ public class AdminServiceImpliment implements AdminService{
 		List<Employee> employeeList = employeeRepository.findAll();
 		return employeeList;
 	}
+	
 	@Override
 	public void saveDealer(Dealer dealer) {
 		dealerRepository.save(dealer);
@@ -57,6 +60,11 @@ public class AdminServiceImpliment implements AdminService{
 			return employeeList;
 		}
 		
+	}
+	@Override
+	public Dealer getDealerById(Integer dealerId) {
+		Optional<Dealer> dealer = dealerRepository.findById(dealerId);
+		return dealer.get();
 	}
 
 }

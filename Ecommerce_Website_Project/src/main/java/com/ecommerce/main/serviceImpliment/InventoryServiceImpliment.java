@@ -1,6 +1,7 @@
 package com.ecommerce.main.serviceImpliment;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,6 +45,11 @@ public  class InventoryServiceImpliment implements InventoryService {
 		else {
 		return productList;
 		}
+	}
+	@Override
+	public Products getProductById(Integer productId) {
+		Optional<Products> product= productRepository.findById(productId);
+		return product.get();
 	}
 
 

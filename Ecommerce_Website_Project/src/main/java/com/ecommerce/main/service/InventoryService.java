@@ -14,4 +14,6 @@ public interface InventoryService {
 
 
 	public List<Products> getproductByPrice(Double productPrice);
+
+	public Products getProductById(Integer productId);
 }

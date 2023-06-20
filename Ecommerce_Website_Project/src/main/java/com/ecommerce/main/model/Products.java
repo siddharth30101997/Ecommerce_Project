@@ -33,6 +33,6 @@ public class Products {
 	@OneToOne(cascade = CascadeType.ALL)
 	private ProductDetails productDetails;
 	
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.MERGE)
 	private List<Dealer> availableDealers=new ArrayList<>();
 }

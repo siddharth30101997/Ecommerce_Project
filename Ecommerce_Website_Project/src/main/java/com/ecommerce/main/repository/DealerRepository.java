@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import com.ecommerce.main.model.Dealer;
 @Repository
-public interface DealerRepository extends JpaRepository<Dealer, Integer>{
+public interface DealerRepository extends JpaRepository<Dealer, Integer> {
 
 }
