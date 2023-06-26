@@ -14,53 +14,59 @@ import com.ecommerce.main.repository.DealerRepository;
 import com.ecommerce.main.repository.EmployeeRepository;
 import com.ecommerce.main.repository.UserDetailsRepository;
 import com.ecommerce.main.service.AdminService;
+
 @Service
-public class AdminServiceImpliment implements AdminService{
+public class AdminServiceImpliment implements AdminService {
 	@Autowired
 	private EmployeeRepository employeeRepository;
 	@Autowired
 	private DealerRepository dealerRepository;
 	@Autowired
 	private UserDetailsRepository userDetailsRepository;
+
 	@Override
 	public void saveEmployee(Employee employee) {
 		employeeRepository.save(employee);
-		
+
 	}
+
 	@Override
 	public List<Employee> getAllEmployee() {
 		List<Employee> employeeList = employeeRepository.findAll();
 		return employeeList;
 	}
-	
+
 	@Override
 	public void saveDealer(Dealer dealer) {
 		dealerRepository.save(dealer);
-		
+
 	}
+
 	@Override
 	public List<Dealer> getAllDealer() {
-			List<Dealer> getAllDealer = dealerRepository.findAll();
-			
+		List<Dealer> getAllDealer = dealerRepository.findAll();
+
 		return getAllDealer;
 	}
+
 	@Override
 	public UserDetails getByUserType(String userType) {
 		UserDetails findByUserType = userDetailsRepository.findByUserType(userType);
-		 
+
 		return findByUserType;
 	}
+
 	@Override
 	public List<Employee> findByEmployeeName(String employeeName) {
 		List<Employee> employeeList = employeeRepository.findByEmployeeName(employeeName);
-		if(employeeList.isEmpty()) {
-			throw new EmployeeNotFoundException("Invalid Entry");
-		}
-		else {
+		if (employeeList.isEmpty()) {
+			throw new EmployeeNotFoundException("Please enter correct Name");
+		} else {
 			return employeeList;
 		}
-		
+
 	}
+
 	@Override
 	public Dealer getDealerById(Integer dealerId) {
 		Optional<Dealer> dealer = dealerRepository.findById(dealerId);

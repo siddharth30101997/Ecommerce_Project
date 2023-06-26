@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -78,7 +79,26 @@ public class InventoryController {
 		}
 
 		return new ResponseEntity<List<Products>>(productByNameList, HttpStatus.OK);
+	}
+	
+	@GetMapping(value = "/getByCatagOrName/{searchProduct}")
+	public ResponseEntity<List<Products>> getproductByNameOrCatagory(@PathVariable String searchProduct) {
+		List<Products> productByNameList = new ArrayList<>();
+		List<Products> productListBycatagory = new ArrayList<>();
 
+		List<Products> allProducts = inventoryService.getAllProducts();
+		for (Products product : allProducts) {
+			if (product.getProductDetails().getProductName().equals(searchProduct)) {
+				productByNameList.add(product);
+				return new ResponseEntity<List<Products>>(productByNameList, HttpStatus.OK);
+			}
+			else if (product.getProductCategory().equals(searchProduct)) {
+				productListBycatagory.add(product);
+				return new ResponseEntity<List<Products>>(productListBycatagory, HttpStatus.OK);
+			}
+		}
+		return new ResponseEntity<List<Products>>(allProducts, HttpStatus.OK);
+		
 	}
 
 	@GetMapping(value = "/viewProductByCategory/{productCatagory}")
@@ -92,11 +112,12 @@ public class InventoryController {
 	public ResponseEntity<String> updateProduct(@RequestParam("product") String product,
 			@RequestParam("productPhoto") MultipartFile multipartfile,@PathVariable Integer productId) throws IOException{
 		
-		Optional<Products> escistingProduct = inventoryService.getProductByIdOptional(productId);
-		if(escistingProduct.isPresent()) {
+//		Optional<Products> escistingProduct = inventoryService.getProductByIdOptional(productId);
+//		if(escistingProduct.isPresent()) {
 			ObjectMapper objectmapper=new ObjectMapper();  
 			
 			Products productData = objectmapper.readValue(product, Products.class);
+			productData.setProductId(productId);
 //			List<ProductFeatures> productfeatures = productData.getProductDetails().getProductfeatures();
 //			for (ProductFeatures feature : productfeatures) {
 //				Integer featureId = feature.getProductFeatureId();
@@ -111,13 +132,23 @@ public class InventoryController {
 			inventoryService.saveproduct(productData);
 			
 			return new ResponseEntity<String>("Products update successfully", HttpStatus.CREATED);
-		}
-		else {
-			throw new ProductNotFoundException("product you want to update is not presnt");
-		}
+	//	}
+//		else {
+//			throw new ProductNotFoundException("product you want to update is not presnt");
+//		}
 		
 		
 		
+	}
+	
+	@DeleteMapping("/deleteProduct/{productId}")
+	public ResponseEntity<String> deleteProduct(@PathVariable Integer productId) {
+		
+		Products product = inventoryService.getProductById(productId);
+		product.setIsActive(false);
+		inventoryService.deleteProduct(product);
+		return new ResponseEntity<String>("Deleted",HttpStatus.NO_CONTENT);
+
 	}
 
 }

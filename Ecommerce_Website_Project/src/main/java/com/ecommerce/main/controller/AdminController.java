@@ -1,7 +1,6 @@
  package com.ecommerce.main.controller;
 
 import java.util.ArrayList;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ecommerce.main.model.Dealer;
 import com.ecommerce.main.model.Employee;
-import com.ecommerce.main.repository.DealerRepository;
 import com.ecommerce.main.service.AdminService;
 @CrossOrigin("*")
 @RestController
@@ -80,6 +78,4 @@ public class AdminController {
 		
 		return new ResponseEntity<Dealer>(dealer,HttpStatus.OK);
 	}
-	
-
 }

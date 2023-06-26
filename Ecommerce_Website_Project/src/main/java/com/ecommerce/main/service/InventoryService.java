@@ -23,6 +23,8 @@ public interface InventoryService {
 
 	public ProductFeatures getProductFeatures(Integer featureId);
 
+	public void deleteProduct(Products product);
+
 	
 
 	

@@ -20,8 +20,20 @@ public  class InventoryServiceImpliment implements InventoryService {
 	ProductFeaturesrepository featureRepository;
 	@Override
 	public void saveproduct(Products product) {
-		
+//		Optional<Products> prod = productRepository.findById(product.getProductId());
+//		Products prod2=prod.get();
+//		if(prod2.getProductDetails().getProductfeatures()!=null)
+//		{
+//			prod2.getProductDetails().getProductfeatures().clear();
+//			productRepository.save(prod2);
+//			featureRepository.deleteAll(product.getProductDetails().getProductfeatures());
+//		}else {
+//			productRepository.save(prod2);
+//		}
+		//productRepository.delete(product);
+	//	System.out.println(product);
 		productRepository.save(product);
+		
 	}
 	@Override
 	public List<Products> getAllProducts() {
@@ -32,7 +44,7 @@ public  class InventoryServiceImpliment implements InventoryService {
 	public List<Products> getproductByCategory(String productCatagory) {
 		List<Products> productList = productRepository.findByProductCategory(productCatagory);
 		if(productList.isEmpty()) {
-			throw new ProductNotFoundException("Product category Not Available");
+			throw new ProductNotFoundException("Sorry we couldn't find any matching results");
 		}
 		else {
 		return productList;
@@ -43,7 +55,7 @@ public  class InventoryServiceImpliment implements InventoryService {
 	public List<Products>getproductByPrice(Double productPrice) {
 		List<Products> productList = productRepository.findByProductPrice(productPrice);
 		if(productList.isEmpty()) {
-			throw new ProductNotFoundException("Product Not Available");
+			throw new ProductNotFoundException("Sorry we couldn't find any matching results ");
 
 		}
 		else {
@@ -64,6 +76,11 @@ public  class InventoryServiceImpliment implements InventoryService {
 	public ProductFeatures getProductFeatures(Integer featureId) {
 		Optional<ProductFeatures> findById = featureRepository.findById(featureId);
 		return findById.get();
+	}
+	@Override
+	public void deleteProduct(Products product) {
+		productRepository.delete(product);
+		
 	}
 
 

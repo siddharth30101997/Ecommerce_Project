@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -29,10 +30,11 @@ public class Products {
 	private Integer productRating;
 	private String productStatus;
 	private byte[] productPhoto;
+	private Boolean isActive;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	private ProductDetails productDetails;
-	
-	@OneToMany(cascade = CascadeType.MERGE)
+	 
+	@ManyToMany(cascade = CascadeType.MERGE)
 	private List<Dealer> availableDealers=new ArrayList<>();
 }
